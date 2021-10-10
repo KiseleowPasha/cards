@@ -13,6 +13,7 @@ export const Cards = () => {
   const showOnlyLiked = useSelector(
     (state) => state.showOnlyLiked.showOnlyLiked
   );
+  
   const currentCards = showOnlyLiked
     ? cards.filter((card) => card.liked === true)
     : cards;
@@ -21,7 +22,7 @@ export const Cards = () => {
     dispatch(fetchCards());
   }, []);
 
-  const showOnlyLikedHandle = () => {
+  const handlerShowOnlyLiked = () => {
     dispatch(createActionShowOnlyLiked());
   };
 
@@ -35,14 +36,16 @@ export const Cards = () => {
                 ? 'button-show-cards-with-like active-button'
                 : 'button-show-cards-with-like'
             }
-            onClick={showOnlyLikedHandle}
+            onClick={handlerShowOnlyLiked}
           >
             Show only cards with like
           </button>
           <div className='cards'>
-            {currentCards.map((card) => (
-              <Card card={card} key={card.id} />
-            ))}
+            {currentCards.length === 0 ? (
+              <span>its empty</span>
+            ) : (
+              currentCards.map((card) => <Card card={card} key={card.id} />)
+            )}
           </div>
         </>
       ) : (

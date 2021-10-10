@@ -6,34 +6,32 @@ import {
 } from '../../store/reducerActionsWithCards';
 import './card.css';
 
-export const Card = (props) => {
-  const dispatch = useDispatch();
+export const Card = ({ card }) => {
   
-  const deleteCardHandle = (id) => {
+  const dispatch = useDispatch();
+
+  const handlerDeleteCard = (id) => {
     if (confirm('Are you sure?')) dispatch(createActionDeleteCard(id));
   };
 
-  const likeCardHandle = (id) => {
+  const handlerLikeCard = (id) => {
     dispatch(createActionLikeCard(id));
   };
 
   return (
-    <div className={props.card.liked ? 'card liked' : 'card'}>
-      <div
-        className='delete-icon'
-        onClick={() => deleteCardHandle(props.card.id)}
-      >
+    <div className={card.liked ? 'card liked' : 'card'}>
+      <div className='delete-icon' onClick={() => handlerDeleteCard(card.id)}>
         <div className='first-line'></div>
         <div className='second-line'></div>
       </div>
       <img
-        src={props.card.pic}
+        src={card.pic}
         alt='image in card'
         width={200}
         className='card-image'
       />
-      <span className='card-title'>{props.card.title}</span>
-      <div className='like-icon' onClick={() => likeCardHandle(props.card.id)}>
+      <span className='card-title'>{card.title}</span>
+      <div className='like-icon' onClick={() => handlerLikeCard(card.id)}>
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>
           <defs></defs>
           <title />

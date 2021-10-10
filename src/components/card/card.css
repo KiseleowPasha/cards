@@ -4,7 +4,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 60vh;
   margin-top: 4%;
   transition: 0.2s;
   box-sizing: border-box;
@@ -12,6 +11,9 @@
 }
 .card img {
   width: 100%;
+}
+.card-title {
+  margin: 4% 0;
 }
 .delete-icon {
   width: 10%;
